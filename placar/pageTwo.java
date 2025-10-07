@@ -87,8 +87,8 @@ public class pageTwo {
      * Verifica quem marcou, atualiza os pontos, sets e muda de página se necessário
      */
     static void Point(JFrame frame, JTextField camp, String playerOne,
-                      JLabel pointPlayerOne, JLabel pointPlayerTwo,
-                      JLabel labelTwo, JLabel labelFour) {
+                    JLabel pointPlayerOne, JLabel pointPlayerTwo,
+                    JLabel labelTwo, JLabel labelFour) {
 
         // Se o jogador que marcou ponto for o jogador 1
         if (camp.getText().equalsIgnoreCase(playerOne)) {
