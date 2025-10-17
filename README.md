@@ -7,14 +7,14 @@
     <h1>Java</h1>
 </div>
 
-<table width="100%">
+<div>
     <tr>
         <td width="40%" valign="top">
-            📚 Todos os códigos desenvolvidos por mim em Java
+            📚 Todos os códigos desenvolvidos por mim em Java<br>
             🏫 Liguagem aprendida na Escola BestMinds
         </td>
     </tr>
-</table>
+</div>
 
 <div align="center"> 
     <h1>Tecnologias </h1>
