@@ -34,8 +34,7 @@ class Elevador {
         }
 
         chamadas.add(passageiro);
-        System.out.println("📞 Chamada: " + passageiro.getAndarOrigem() +
-                " -> " + passageiro.getAndarDestino());
+        System.out.println("📞 Chamada: " + passageiro.getAndarOrigem() + " - " + passageiro.getAndarDestino());
     }
 
     private Integer escolherDestino() {
@@ -131,7 +130,6 @@ class Elevador {
         System.out.println("-".repeat(40));
     }
 
-    // Getters para informações do elevador
     public int getTotalAndares() {
         return totalAndares;
     }
@@ -188,12 +186,10 @@ public class ElevadorMain {
         List<Passageiro> passageiros = new ArrayList<>();
         Random random = new Random();
 
-        // Criar 100 passageiros
         for (int i = 0; i < 100; i++) {
             int origem = random.nextInt(TOTAL_ANDARES);
             int destino = random.nextInt(TOTAL_ANDARES);
 
-            // Garantir que origem e destino sejam diferentes
             while (destino == origem) {
                 destino = random.nextInt(TOTAL_ANDARES);
             }
@@ -201,20 +197,15 @@ public class ElevadorMain {
             passageiros.add(new Passageiro(origem, destino));
         }
 
-        // Adicionar chamadas ao elevador
         for (Passageiro p : passageiros) {
             elevador.adicionarChamada(p);
         }
-
-        // Exemplo de uso: mover o elevador algumas vezes
-        System.out.println("\n=== SIMULAÇÃO DO ELEVADOR ===\n");
 
         for (int i = 0; i < 20; i++) {
             elevador.status();
             elevador.mover();
         }
 
-        System.out.println("\n=== STATUS FINAL ===");
         elevador.status();
         System.out.println("Total de movimentos: " + elevador.getMovimentos());
     }
