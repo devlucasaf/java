@@ -1,6 +1,5 @@
 package application.exercicios.faculdade.cg;
 
-
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 

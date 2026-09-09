@@ -7,6 +7,7 @@ public class Semaforo {
     private final int   duracaoVermelho;
     private int         contador;
 
+    // --- DEFINE AS DURAÇÕES E O ESTADO INICIAL DO SEMÁFORO ---
     public Semaforo(int duracaoVerde, int duracaoAmarelo, int duracaoVermelho, Estado estadoInicial) {
         this.duracaoVerde = duracaoVerde;
         this.duracaoAmarelo = duracaoAmarelo;
@@ -15,6 +16,7 @@ public class Semaforo {
         this.contador = 0;
     }
 
+    // --- AVANÇA UM TICK E TROCA DE ESTADO QUANDO A DURAÇÃO ACABA ---
     public void atualizar() {
         contador++;
         switch (estado) {
@@ -39,10 +41,12 @@ public class Semaforo {
         }
     }
 
+    // --- INDICA SE OS CARROS PODEM PASSAR ---
     public boolean podePassar() {
         return estado == Estado.VERDE;
     }
 
+    // --- RETORNA O ESTADO ATUAL DO SEMAFORO ---
     public Estado getEstado() {
         return estado;
     }

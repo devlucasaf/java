@@ -3,7 +3,6 @@ package application.simuladores.trafego;
 import java.util.*;
 
 public class SimuladorTrafego {
-
     private final int       tamanhoVia;
     private final int       posicaoSemaforo;
     private final Semaforo  semaforo;
@@ -17,12 +16,14 @@ public class SimuladorTrafego {
     private int                 totalCarrosQuePassaram = 0;
     private final Set<Integer>  idsJaContabilizados = new HashSet<>();
 
+    // --- DEFINE O TAMANHO DA VIA, A POSIÇÃO E O SEMÁFORO ---
     public SimuladorTrafego(int tamanhoVia, int posicaoSemaforo, Semaforo semaforo) {
         this.tamanhoVia = tamanhoVia;
         this.posicaoSemaforo = posicaoSemaforo;
         this.semaforo = semaforo;
     }
 
+    // --- EXECUTA A SIMULACAO POR UM NÚMERO DE TICKS ---
     public void simular(int totalTicks, double probabilidadeNovoCarro) {
         for (int t = 0; t < totalTicks; t++) {
             ticksAtuais = t;
@@ -43,12 +44,14 @@ public class SimuladorTrafego {
         imprimirResumo();
     }
 
+    // --- CRIA UM CARRO NO INÍCIO DA VIA COM VELOCIDADE ALEATÓRIA ---
     private void gerarCarro() {
         int velocidadeMaxima = 2 + random.nextInt(3);
         carros.add(new Carro(proximoId++, 0, velocidadeMaxima));
         totalCarrosGerados++;
     }
 
+    // --- MOVE CADA CARRO RESPEITANDO O CARRO DA FRENTE E O SEMÁFORO ---
     private void atualizarCarros() {
         carros.sort((a, b) -> Integer.compare(b.getPosicao(), a.getPosicao()));
 
@@ -80,10 +83,12 @@ public class SimuladorTrafego {
         }
     }
 
+    // --- REMOVE CARROS QUE JA SAIRAM DO FIM DA VIA ---
     private void removerCarrosQueSairam() {
         carros.removeIf(c -> c.getPosicao() >= tamanhoVia);
     }
 
+    // --- DESENHA A PISTA COM CARROS E O SEMAFORO ---
     private void imprimirEstadoVia() {
         char[] pista = new char[tamanhoVia];
         Arrays.fill(pista, '.');
@@ -101,6 +106,7 @@ public class SimuladorTrafego {
         System.out.println("Tick " + ticksAtuais + " [" + new String(pista) + "] semaforo=" + semaforo.getEstado());
     }
 
+    // --- MOSTRA ESTATISTICAS FINAIS DA SIMULACAO ---
     private void imprimirResumo() {
         System.out.println();
         System.out.println("=== Resumo da simulacao ===");

@@ -58,11 +58,7 @@ public class Main {
                     .map(e -> e.getSalario())
                     .reduce(0.0, (x, y) -> x + y);
 
-            System.out.println(
-                    "Soma dos salários das pessoas cujo nome começa com 'M': "
-                            + String.format("%.2f", sum)
-            );
-
+            System.out.println("Soma dos salários das pessoas cujo nome começa com 'M': " + String.format("%.2f", sum));
         } catch (IOException e) {
             System.out.println("Erro: " + e.getMessage());
         }

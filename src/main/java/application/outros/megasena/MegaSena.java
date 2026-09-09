@@ -6,9 +6,9 @@ import java.io.PrintWriter;
 import java.util.*;
 
 public class MegaSena {
-    private List<Integer> NumerosJogosAJogar;
+    private List<Integer> numerosJogosAJogar;
 
-    // --- GERA UM JOGO COM DEZENAS ALEATORIAS ENTRE 1 E 60 ---
+    // --- GERA UM JOGO COM DEZENAS ALEATÓRIAS ENTRE 1 E 60 ---
     public List<Integer> gerarJogo (int quantidadeNumeros) {
         if (quantidadeNumeros < 6 || quantidadeNumeros > 20) {
             throw new IllegalArgumentException("Para jogar, escolha entre 6 e 20 dezenas.");
@@ -17,15 +17,15 @@ public class MegaSena {
         Set<Integer> selecao = new HashSet<>();
         Random random = new Random();
 
-        // --- GERA AS DEZENAS ATE ATINGIR A QUANTIDADE SOLICITADA ---
+        // --- GERA AS DEZENAS ATÉ ATINGIR A QUANTIDADE SOLICITADA ---
         while (selecao.size() < quantidadeNumeros) {
             selecao.add(random.nextInt(60) + 1);
         }
 
-        this.NumerosJogosAJogar = new ArrayList<>(selecao);
-        Collections.sort(this.NumerosJogosAJogar);
+        this.numerosJogosAJogar = new ArrayList<>(selecao);
+        Collections.sort(this.numerosJogosAJogar);
 
-        return this.NumerosJogosAJogar;
+        return this.numerosJogosAJogar;
     }
 
     // --- CALCULA O CUSTO DO JOGO CONFORME A QUANTIDADE DE DEZENAS ---
@@ -58,9 +58,9 @@ public class MegaSena {
             printWriter.println("     Jogo para a Mega da Virada     ");
             printWriter.println("                |                   ");
             printWriter.println("------------------------------------");
-            printWriter.println("    " + this.NumerosJogosAJogar);
+            printWriter.println("    " + this.numerosJogosAJogar);
             printWriter.println("------------------------------------");
-            printWriter.printf("- Valor total: R$%.2f ------\n", custoJogoMegaSena(this.NumerosJogosAJogar.size()));
+            printWriter.printf("- Valor total: R$%.2f ------\n", custoJogoMegaSena(this.numerosJogosAJogar.size()));
             printWriter.println("\n");
         } catch (IOException e) {
             System.err.println("Erro ao salvar: " + e.getMessage());

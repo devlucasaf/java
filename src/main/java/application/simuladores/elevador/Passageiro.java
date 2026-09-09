@@ -1,7 +1,6 @@
 package application.simuladores.elevador;
 
-// Classe que representa um Passageiro
-class Passageiro {
+public class Passageiro {
     private int     andarOrigem;
     private int     andarDestino;
     private boolean noElevador;

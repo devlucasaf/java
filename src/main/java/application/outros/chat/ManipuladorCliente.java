@@ -18,21 +18,25 @@ public class ManipuladorCliente implements Runnable {
     private String  salaAtual = "geral";
     private boolean desconectado = false;
 
+    // --- GUARDA O SOCKET E O SERVIDOR DESTA CONEXÃO ---
     public ManipuladorCliente(Socket socket, ServidorChat servidor) {
         this.socket = socket;
         this.servidor = servidor;
     }
 
+    // --- RETORNA O APELIDO DO USUÁRIO ---
     public String getNomeUsuario() {
         return nomeUsuario;
     }
 
+    // --- ENVIA UMA LINHA DE TEXTO PARA ESTE CLIENTE ---
     void enviar(String mensagem) {
         if (saida != null) {
             saida.println(mensagem);
         }
     }
 
+    // --- LOOP PRINCIPAL DA CONEXÃO DO CLIENTE ---
     @Override
     public void run() {
         try {
@@ -54,6 +58,7 @@ public class ManipuladorCliente implements Runnable {
         }
     }
 
+    // --- INTERPRETA COMANDOS OU ENVIA MENSAGEM PARA A SALA ---
     private void processarMensagem(String linha) {
         if (linha.startsWith("/nome ")) {
             String novoNome = linha.substring("/nome ".length()).trim();
@@ -79,6 +84,7 @@ public class ManipuladorCliente implements Runnable {
         }
     }
 
+    // --- REMOVE O CLIENTE DA SALA E FECHA O SOCKET ---
     private void desconectar() {
         if (desconectado) {
             return;
@@ -89,7 +95,7 @@ public class ManipuladorCliente implements Runnable {
             servidor.enviarParaSala(salaAtual, "* " + nomeUsuario + " saiu do chat *", this);
             socket.close();
         } catch (IOException ignored) {
-            // conexão já pode ter caído
+            // --- CONEXAO JA PODE TER CAÍDO ---
         }
     }
 }

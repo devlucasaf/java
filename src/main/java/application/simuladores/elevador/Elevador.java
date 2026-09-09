@@ -35,7 +35,7 @@ public class Elevador {
         System.out.println("📞 Chamada: " + passageiro.getAndarOrigem() + " - " + passageiro.getAndarDestino());
     }
 
-    // --- ESCOLHE O DESTINO MAIS PROXIMO DO ANDAR ATUAL ---
+    // --- ESCOLHE O DESTINO MAIS PRÓXIMO DO ANDAR ATUAL ---
     private Integer escolherDestino() {
         List<Integer> destinos = new ArrayList<>();
 
@@ -65,7 +65,7 @@ public class Elevador {
         return destinoMaisProximo;
     }
 
-    // --- MOVIMENTA O ELEVADOR EM DIRECAO AO DESTINO MAIS PROXIMO ---
+    // --- MOVIMENTA O ELEVADOR EM DIREÇÃO AO DESTINO MAIS PRÓXIMO ---
     public void mover() {
         Integer destino = escolherDestino();
 

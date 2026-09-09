@@ -9,7 +9,7 @@ public interface Algoritmo {
 
     int simular(List<Integer> referencias, int numeroFrames);
 
-    // --- CRIA UMA IMPLEMENTACAO DO ALGORITMO FIFO ---
+    // --- CRIA UMA IMPLEMENTAÇÃO DO ALGORITMO FIFO ---
     static Algoritmo fifo() {
         return new Algoritmo() {
             @Override
@@ -17,7 +17,7 @@ public interface Algoritmo {
                 return "FIFO";
             }
 
-            // --- SIMULA A SUBSTITUICAO DE PAGINAS PELO ALGORITMO FIFO ---
+            // --- SIMULA A SUBSTITUIÇÃO DE PÁGINAS PELO ALGORITMO FIFO ---
             @Override
             public int simular(List<Integer> referencias, int numeroFrames) {
                 LinkedList<Integer> fila = new LinkedList<>();
@@ -37,7 +37,7 @@ public interface Algoritmo {
         };
     }
 
-    // --- CRIA UMA IMPLEMENTACAO DO ALGORITMO LRU ---
+    // --- CRIA UMA IMPLEMENTAÇÃO DO ALGORITMO LRU ---
     static Algoritmo lru() {
         return new Algoritmo() {
             @Override
@@ -45,7 +45,7 @@ public interface Algoritmo {
                 return "LRU";
             }
 
-            // --- SIMULA A SUBSTITUICAO DE PAGINAS PELO ALGORITMO LRU ---
+            // --- SIMULA A SUBSTITUIÇÃO DE PÁGINAS PELO ALGORITMO LRU ---
             @Override
             public int simular(List<Integer> referencias, int numeroFrames) {
                 LinkedList<Integer> ordem = new LinkedList<>();
@@ -67,7 +67,7 @@ public interface Algoritmo {
         };
     }
 
-    // --- CRIA UMA IMPLEMENTACAO DO ALGORITMO OTIMO ---
+    // --- CRIA UMA IMPLEMENTAÇÃO DO ALGORITMO ÓTIMO ---
     static Algoritmo otimo() {
         return new Algoritmo() {
             @Override
@@ -75,7 +75,7 @@ public interface Algoritmo {
                 return "OTIMO";
             }
 
-            // --- SIMULA A SUBSTITUICAO DE PAGINAS PELO ALGORITMO OTIMO ---
+            // --- SIMULA A SUBSTITUIÇÃO DE PÁGINAS PELO ALGORITMO ÓTIMO ---
             @Override
             public int simular(List<Integer> referencias, int numeroFrames) {
                 LinkedList<Integer> frames = new LinkedList<>();

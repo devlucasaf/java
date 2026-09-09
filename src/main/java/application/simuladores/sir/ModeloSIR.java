@@ -3,6 +3,7 @@ package application.simuladores.sir;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModeloSIR extends JPanel {
-
     private static final int LARGURA = 900;
     private static final int ALTURA = 600;
     private static final int GRAFICO_TOP = 400;
@@ -25,6 +25,7 @@ public class ModeloSIR extends JPanel {
 
     private final List<double[]> historico = new ArrayList<>();
 
+    // --- CONFIGURA O PAINEL E INICIA O TIMER DA SIMULACAO ---
     public ModeloSIR() {
         setBackground(Color.WHITE);
         setPreferredSize(new java.awt.Dimension(LARGURA, ALTURA));
@@ -34,6 +35,7 @@ public class ModeloSIR extends JPanel {
         timer.start();
     }
 
+    // --- AVANCA UM PASSO DAS EQUAÇÕES SIR ---
     private void passo() {
         double dS = -beta * S * I * dt;
         double dI = (beta * S * I - gamma * I) * dt;
@@ -52,6 +54,7 @@ public class ModeloSIR extends JPanel {
         }
     }
 
+    // --- DESENHA TEXTOS, LEGENDA E CURVAS DO GRÁFICO ---
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -92,6 +95,7 @@ public class ModeloSIR extends JPanel {
         g2.setColor(new Color(0, 150, 0)); g2.drawString("Recuperados", x0 + 190, y0 + 15);
     }
 
+    // --- ABRE A JANELA DO MODELO SIR ---
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(() -> {
             JFrame f = new JFrame("Modelo SIR");

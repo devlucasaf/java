@@ -16,14 +16,17 @@ public class Carro {
         this.ticksParado = 0;
     }
 
+    // --- RETORNA O IDENTIFICADOR DO CARRO ---
     public int getId() {
         return id;
     }
 
+    // --- RETORNA A POSIÇÃO ATUAL DO CARRO ---
     public int getPosicao() {
         return posicao;
     }
 
+    // --- ATUALIZA A VELOCIDADE E AVANÇA CONFORME O ESPAÇO LIVRE E O SEMÁFORO ---
     public void mover(int distanciaLivre, boolean semaforoLiberado) {
         if (velocidade < velocidadeMaxima) {
             velocidade++;
@@ -40,10 +43,12 @@ public class Carro {
         posicao += deslocamento;
     }
 
+    // --- RETORNA A VELOCIDADE ATUAL ---
     public int getVelocidade() {
         return velocidade;
     }
 
+    // --- RETORNA QUANTOS TICKS O CARRO FICOU PARADO ---
     public int getTicksParado() {
         return ticksParado;
     }

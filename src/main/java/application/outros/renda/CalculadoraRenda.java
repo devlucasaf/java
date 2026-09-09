@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class CalculadoraRenda {
 
-    // --- LE O SALARIO, CALCULA OS DESCONTOS E EXIBE O RESULTADO ---
+    // --- LE O SALÁRIO, CALCULA OS DESCONTOS E EXIBE O RESULTADO ---
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         scanner.useLocale(Locale.US);

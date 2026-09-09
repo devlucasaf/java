@@ -23,13 +23,13 @@ public class SistemaParticulas extends JPanel {
     private int                     mx = 500;
     private int                     my = 350;
 
-    // --- CONFIGURA A INTERFACE, OS CONTROLES E A ATUALIZACAO DAS PARTICULAS ---
+    // --- CONFIGURA A INTERFACE, OS CONTROLES E A ATUALIZAÇÃO DAS PARTÍCULAS ---
     public SistemaParticulas() {
         setBackground(Color.BLACK);
         setPreferredSize(new java.awt.Dimension(1000, 700));
         setFocusable(true);
 
-        // --- ATUALIZA A POSICAO DE EMISSAO CONFORME O MOVIMENTO DO MOUSE ---
+        // --- ATUALIZA A POSIÇÃO DE EMISSÃO CONFORME O MOVIMENTO DO MOUSE ---
         addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseMoved(MouseEvent e) {
@@ -44,7 +44,7 @@ public class SistemaParticulas extends JPanel {
             }
         });
 
-        // --- GERA UMA EXPLOSAO AO PRESSIONAR O MOUSE NO MODO CORRESPONDENTE ---
+        // --- GERA UMA EXPLOSÃO AO PRESSIONAR O MOUSE NO MODO CORRESPONDENTE ---
         addMouseListener(new MouseAdapter() {
             @Override public void mousePressed(MouseEvent e) {
                 if (modo.equals("explosao")) {
@@ -53,7 +53,7 @@ public class SistemaParticulas extends JPanel {
             }
         });
 
-        // --- ALTERA O MODO DE EMISSAO CONFORME A TECLA PRESSIONADA ---
+        // --- ALTERA O MODO DE EMISSÃO CONFORME A TECLA PRESSIONADA ---
         addKeyListener(new KeyAdapter() {
             @Override public void keyPressed(KeyEvent e) {
                 switch (e.getKeyChar()) {
@@ -66,7 +66,7 @@ public class SistemaParticulas extends JPanel {
             }
         });
 
-        // --- EMITE, ATUALIZA E REDESENHA AS PARTICULAS A CADA 16 MILISSEGUNDOS ---
+        // --- EMITE, ATUALIZA E REDESENHA AS PARTÍCULAS A CADA 16 MILISSEGUNDOS ---
         Timer timer = new Timer(16, e -> {
             emitir();
             atualizar();
@@ -75,7 +75,7 @@ public class SistemaParticulas extends JPanel {
         timer.start();
     }
 
-    // --- EMITE PARTICULAS CONFORME O MODO SELECIONADO ---
+    // --- EMITE PARTÍCULAS CONFORME O MODO SELECIONADO ---
     private void emitir() {
         switch (modo) {
             case "fogo" -> {
@@ -104,7 +104,7 @@ public class SistemaParticulas extends JPanel {
         }
     }
 
-    // --- GERA PARTICULAS EM TODAS AS DIRECOES A PARTIR DO PONTO INFORMADO ---
+    // --- GERA PARTÍCULAS EM TODAS AS DIREÇÕES A PARTIR DO PONTO INFORMADO ---
     private void explosao(int cx, int cy) {
         for (int i = 0; i < 100; i++) {
             double a = r.nextDouble() * Math.PI * 2;
@@ -114,7 +114,7 @@ public class SistemaParticulas extends JPanel {
         }
     }
 
-    // --- ATUALIZA A POSICAO, A VELOCIDADE E O TEMPO DE VIDA DAS PARTICULAS ---
+    // --- ATUALIZA A POSIÇÃO, A VELOCIDADE E O TEMPO DE VIDA DAS PARTÍCULAS ---
     private void atualizar() {
         Iterator<Particula> it = particulas.iterator();
 
@@ -135,7 +135,7 @@ public class SistemaParticulas extends JPanel {
         }
     }
 
-    // --- DESENHA AS PARTICULAS E AS INFORMACOES DO MODO ATUAL ---
+    // --- DESENHA AS PARTÍCULAS E AS INFORMAÇÕES DO MODO ATUAL ---
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -149,13 +149,13 @@ public class SistemaParticulas extends JPanel {
         }
         graphics2D.setColor(Color.WHITE);
         graphics2D.drawString("Modo: " + modo + " (teclas 1=fogo 2=fumaca 3=chuva 4=explosao)", 10, 20);
-        graphics2D.drawString("Particulas: " + particulas.size(), 10, 35);
+        graphics2D.drawString("Partículas: " + particulas.size(), 10, 35);
     }
 
-    // --- CRIA E EXIBE A JANELA DO SISTEMA DE PARTICULAS ---
+    // --- CRIA E EXIBE A JANELA DO SISTEMA DE PARTÍCULAS ---
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(() -> {
-            JFrame frame = new JFrame("Sistema de Particulas");
+            JFrame frame = new JFrame("Sistema de Partículas");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             SistemaParticulas sistemaParticulas = new SistemaParticulas();
 

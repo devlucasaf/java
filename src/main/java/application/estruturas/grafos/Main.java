@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         Grafo grafo = new Grafo();
 
-        // Vértices (cidade, coordenada x, coordenada y) -- usado pela heurística do A*
+        // --- VÉRTICES USADOS PELA HEURÍSTICA DO A* ---
         grafo.adicionarVertice("Brasilia", 0, 0);
         grafo.adicionarVertice("Goiania", -2, -1);
         grafo.adicionarVertice("Anapolis", -1, 0);
@@ -14,7 +14,7 @@ public class Main {
         grafo.adicionarVertice("SaoPaulo", -6, -8);
         grafo.adicionarVertice("Uberaba", -5, -4);
 
-        // Arestas (origem, destino, distância em km aproximada)
+        // --- ARESTAS ---
         grafo.adicionarAresta("Brasilia", "Anapolis", 130);
         grafo.adicionarAresta("Anapolis", "Goiania", 55);
         grafo.adicionarAresta("Goiania", "Uberlandia", 340);

@@ -1,6 +1,7 @@
 package application.exercicios.faculdade.bsbcompute.worker;
 
 import application.exercicios.faculdade.bsbcompute.model.*;
+
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -34,16 +35,16 @@ public class Worker implements Runnable {
     }
 
     private void runTask(TaskMessage msg) {
-        Request req = msg.request;
+        Request request = msg.request;
 
         double start = System.nanoTime() / 1e9;
         int curActive = setActive(+1);
 
-        outQueue.offer(new EventMessage("START", workerId, req.id,
-                req.prioridade, req.tipo, req.tempoExecucao,
+        outQueue.offer(new EventMessage("START", workerId, request.id,
+                request.prioridade, request.tipo, request.tempoExecucao,
                 0.0, msg.absoluteArrivalTs, start, 0, curActive));
 
-        double effective = req.tempoExecucao / capacity;
+        double effective = request.tempoExecucao / capacity;
 
         try {
             Thread.sleep((long) (effective * 1000));
@@ -54,8 +55,8 @@ public class Worker implements Runnable {
         double end = System.nanoTime() / 1e9;
         curActive = setActive(-1);
 
-        outQueue.offer(new EventMessage("DONE", workerId, req.id,
-                req.prioridade, req.tipo, req.tempoExecucao,
+        outQueue.offer(new EventMessage("DONE", workerId, request.id,
+                request.prioridade, request.tipo, request.tempoExecucao,
                 effective, msg.absoluteArrivalTs, start, end, curActive));
     }
 

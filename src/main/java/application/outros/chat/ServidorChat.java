@@ -15,13 +15,15 @@ public class ServidorChat {
 
     private final int porta;
     private final ExecutorService pool = Executors.newCachedThreadPool();
-
+    
     private final Map<String, Set<ManipuladorCliente>> salas = new ConcurrentHashMap<>();
 
+    // --- DEFINE A PORTA DO SERVIDOR ---
     public ServidorChat(int porta) {
         this.porta = porta;
     }
 
+    // --- INICIA O SERVIDOR E ACEITA CLIENTES EM LOOP ---
     public void iniciar() throws IOException {
         try (ServerSocket serverSocket = new ServerSocket(porta)) {
             System.out.println("Servidor de chat ouvindo na porta " + porta + "...");
@@ -34,10 +36,12 @@ public class ServidorChat {
         }
     }
 
+    // --- ADICIONA O CLIENTE A SALA INFORMADA ---
     void entrarNaSala(String sala, ManipuladorCliente cliente) {
         salas.computeIfAbsent(sala, s -> ConcurrentHashMap.newKeySet()).add(cliente);
     }
 
+    // --- REMOVE O CLIENTE DA SALA INFORMADA ---
     void sairDaSala(String sala, ManipuladorCliente cliente) {
         Set<ManipuladorCliente> membros = salas.get(sala);
         if (membros != null) {
@@ -45,6 +49,7 @@ public class ServidorChat {
         }
     }
 
+    // --- LISTA OS NOMES DOS USUÁRIOS PRESENTES NA SALA ---
     List<String> listarUsuariosDaSala(String sala) {
         List<String> nomes = new ArrayList<>();
         Set<ManipuladorCliente> membros = salas.get(sala);
@@ -56,6 +61,7 @@ public class ServidorChat {
         return nomes;
     }
 
+    // --- ENVIA A MENSAGEM PARA TODOS DA SALA EXCETO O REMETENTE ---
     void enviarParaSala(String sala, String mensagem, ManipuladorCliente remetente) {
         Set<ManipuladorCliente> membros = salas.get(sala);
         if (membros == null) {
@@ -69,6 +75,7 @@ public class ServidorChat {
         }
     }
 
+    // --- PONTO DE ENTRADA ---
     public static void main(String[] args) throws IOException {
         int porta = args.length > 0 ? Integer.parseInt(args[0]) : 5000;
         new ServidorChat(porta).iniciar();

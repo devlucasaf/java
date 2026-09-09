@@ -1,6 +1,5 @@
 package application.outros.cardapio;
 
-
 import application.system.restaurante.*;
 
 import javafx.application.Application;
@@ -25,7 +24,7 @@ public class CardapioApp extends Application {
     private static final String BG_PANEL      = "#1B1F24";
     private static final String BG_CARD       = "#232A31";
     private static final String BG_CARD_HOVER = "#2C353D";
-    private static final String ACCENT        = "#F5A524"; // dourado/laranja
+    private static final String ACCENT        = "#F5A524";
     private static final String ACCENT_HOVER  = "#FFB74A";
     private static final String TEXT_PRIMARY  = "#F1F1F1";
     private static final String TEXT_MUTED    = "#B0B8C1";
@@ -243,19 +242,19 @@ public class CardapioApp extends Application {
                     setText(null);
                     setStyle("-fx-background-color: " + BG_CARD + ";");
                 } else {
-                    Label nome = new Label(ip.item.getNome());
-                    nome.setTextFill(Color.web(TEXT_PRIMARY));
-                    nome.setFont(Font.font("Segoe UI", FontWeight.BOLD, 13));
+                    Label lblNome = new Label(ip.item.getNome());
+                    lblNome.setTextFill(Color.web(TEXT_PRIMARY));
+                    lblNome.setFont(Font.font("Segoe UI", FontWeight.BOLD, 13));
 
-                    Label sub = new Label(String.format("%dx  •  R$ %.2f",
+                    Label lblSub = new Label(String.format("%dx  •  R$ %.2f",
                             ip.quantidade, ip.item.calcularPrecoFinal() * ip.quantidade));
-                    sub.setTextFill(Color.web(TEXT_MUTED));
-                    sub.setFont(Font.font("Segoe UI", 11));
+                    lblSub.setTextFill(Color.web(TEXT_MUTED));
+                    lblSub.setFont(Font.font("Segoe UI", 11));
 
-                    VBox info = new VBox(2, nome, sub);
+                    VBox vbxInfo = new VBox(2, lblNome, lblSub);
 
-                    Button menos = pequenoBotao("-");
-                    menos.setOnAction(e -> {
+                    Button btnMenos = pequenoBotao("-");
+                    btnMenos.setOnAction(e -> {
                         if (ip.quantidade > 1) {
                             ip.quantidade--;
                             pedido.set(pedido.indexOf(ip), ip); // refresh
@@ -265,31 +264,31 @@ public class CardapioApp extends Application {
                         recalcularTotal();
                     });
 
-                    Button mais = pequenoBotao("+");
-                    mais.setOnAction(e -> {
+                    Button btnMais = pequenoBotao("+");
+                    btnMais.setOnAction(e -> {
                         ip.quantidade++;
                         pedido.set(pedido.indexOf(ip), ip);
                         recalcularTotal();
                     });
 
-                    Button remover = pequenoBotao("✕");
+                    Button btnRemover = pequenoBotao("✕");
 
-                    remover.setStyle(estiloBotaoPequeno(DANGER));
-                    remover.setOnAction(e -> {
+                    btnRemover.setStyle(estiloBotaoPequeno(DANGER));
+                    btnRemover.setOnAction(e -> {
                         pedido.remove(ip);
                         recalcularTotal();
                     });
 
-                    HBox controles = new HBox(4, menos, mais, remover);
-                    controles.setAlignment(Pos.CENTER_RIGHT);
+                    HBox hbxControles = new HBox(4, btnMenos, btnMais, btnRemover);
+                    hbxControles.setAlignment(Pos.CENTER_RIGHT);
 
-                    HBox linha = new HBox(10, info, spacerH(), controles);
+                    HBox hbxLinha = new HBox(10, vbxInfo, spacerH(), hbxControles);
 
-                    linha.setAlignment(Pos.CENTER_LEFT);
-                    linha.setPadding(new Insets(8, 10, 8, 10));
-                    linha.setStyle("-fx-background-color: " + BG_PANEL + "; -fx-background-radius: 6;");
+                    hbxLinha.setAlignment(Pos.CENTER_LEFT);
+                    hbxLinha.setPadding(new Insets(8, 10, 8, 10));
+                    hbxLinha.setStyle("-fx-background-color: " + BG_PANEL + "; -fx-background-radius: 6;");
 
-                    setGraphic(linha);
+                    setGraphic(hbxLinha);
                     setText(null);
                     setStyle("-fx-background-color: " + BG_CARD + "; -fx-padding: 4 0;");
                 }

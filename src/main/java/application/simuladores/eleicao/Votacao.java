@@ -7,7 +7,7 @@ public class Votacao {
     static ArrayList<Integer> votosTotais = new ArrayList<>();
     static String             eleito = "";
 
-    // --- EXIBE AS OPCOES DE CANDIDATOS E INICIA A ELEICAO ---
+    // --- EXIBE AS OPÇÕES DE CANDIDATOS E INICIA A ELEIÇÃO ---
     public static void main(String[] args) {
         System.out.println("""
                 Escolha entre as seguintes opções de candidatos:
@@ -21,7 +21,7 @@ public class Votacao {
         eleicao();
     }
 
-    // --- REGISTRA OS VOTOS E APRESENTA O RESULTADO DA ELEICAO ---
+    // --- REGISTRA OS VOTOS E APRESENTA O RESULTADO DA ELEIÇÃO ---
     public static void eleicao() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -74,7 +74,7 @@ public class Votacao {
             double porcentagem3    = (votosLucao        / (double) totalVotos) * 100;
             double porcentagemNull = (votosNulo         / (double) totalVotos) * 100;
 
-            // --- ANULA E REINICIA A ELEICAO CASO OS VOTOS NULOS SEJAM MAIORIA ---
+            // --- ANULA E REINICIA A ELEIÇÃO CASO OS VOTOS NULOS SEJAM MAIORIA ---
             if (votosNulo > votosEleito) {
                 System.out.println("Votação anulada! Os votos nulos venceram com " + votosNulo);
                 System.out.println("\nVotação recomeçada!\n");

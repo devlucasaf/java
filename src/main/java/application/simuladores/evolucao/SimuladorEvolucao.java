@@ -8,7 +8,7 @@ import java.util.Random;
 public class SimuladorEvolucao {
 
     public static void main(String[] args) {
-        String alvo = "A evolucao emerge de pressao seletiva!";
+        String alvo = "A evolução emerge de pressão seletiva!";
         int populacao = 200;
         double elite = 0.1;
         double mutacao = 0.02;
@@ -19,9 +19,9 @@ public class SimuladorEvolucao {
             pop.add(Individuo.aleatorio(alvo, r));
         }
 
-        System.out.println("=== SIMULADOR DE EVOLUCAO GENETICA ===");
+        System.out.println("=== SIMULADOR DE EVOLUÇÃO GENÉTICA ===");
         System.out.println("Alvo: \"" + alvo + "\"");
-        System.out.println("Populacao: " + populacao + " | Elite: " + (int)(populacao * elite) + " | Mutacao: " + mutacao);
+        System.out.println("População: " + populacao + " | Elite: " + (int)(populacao * elite) + " | Mutação: " + mutacao);
         System.out.println();
 
         int geracao = 0;
@@ -34,7 +34,7 @@ public class SimuladorEvolucao {
             }
 
             if (melhor.fitness == alvo.length()) {
-                System.out.println("\nAlvo atingido em " + geracao + " geracoes.");
+                System.out.println("\nAlvo atingido em " + geracao + " gerações.");
                 break;
             }
 

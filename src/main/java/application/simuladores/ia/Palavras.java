@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Palavras {
 
-    // --- REMOVE ESPACOS EXCEDENTES E NORMALIZA O TEXTO RECEBIDO ---
+    // --- REMOVE ESPAÇOS EXCEDENTES E NORMALIZA O TEXTO RECEBIDO ---
     public static String extrairInteligente(String textoBruto) {
         if (textoBruto == null || textoBruto.isBlank()) {
             return "";
@@ -35,18 +35,18 @@ public class Palavras {
             }
             System.out.println("PDF localizado: " + caminhoPdf);
         } catch (SecurityException e) {
-            System.err.println("Sem permissao para acessar o PDF: " + e.getMessage());
+            System.err.println("Sem permissão para acessar o PDF: " + e.getMessage());
         }
     }
 
-    // --- CONSULTA E EXIBE O CONTEUDO DE UM DOCUMENTO PUBLICO DO GOOGLE DOCS ---
+    // --- CONSULTA E EXIBE O CONTEÚDO DE UM DOCUMENTO PÚBLICO DO GOOGLE DOCS ---
     public static void docs() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Informe a URL publica/exportavel do Google Docs: ");
+        System.out.print("Informe a URL pública/exportável do Google Docs: ");
         String url = scanner.nextLine().trim();
 
         if (url.isBlank()) {
-            System.out.println("URL invalida.");
+            System.out.println("URL inválida.");
             return;
         }
 
@@ -67,16 +67,16 @@ public class Palavras {
         }
     }
 
-    // --- SOLICITA O MODO DE LEITURA E EXECUTA A OPCAO SELECIONADA ---
+    // --- SOLICITA O MODO DE LEITURA E EXECUTA A OPÇÃO SELECIONADA ---
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Qual modo deseja utilizar:\n[1] - Arquivo PDF\n[2] - Google Docs\nOpcao: ");
+        System.out.print("Qual modo deseja utilizar:\n[1] - Arquivo PDF\n[2] - Google Docs\nOpção: ");
         String opcao = scanner.nextLine().trim();
 
         switch (opcao) {
             case "1" -> pdf();
             case "2" -> docs();
-            default -> System.out.println("Opcao invalida");
+            default -> System.out.println("Opção inválida");
         }
     }
 }
