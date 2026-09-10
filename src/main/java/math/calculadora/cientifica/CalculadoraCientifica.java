@@ -21,11 +21,13 @@ public class CalculadoraCientifica extends JFrame {
     private final Color COR_BOTAO_OPERADOR = new Color(70, 70, 80);
     private final Color COR_BOTAO_IGUAL = new Color(0, 100, 180);
 
+    // --- CONSTROI A JANELA E INICIALIZA UI E MOTOR DE CÁLCULO ---
     public CalculadoraCientifica() {
         inicializarComponentes();
         configurarMotorScript();
     }
 
+    // --- CONFIGURA FUNÇÕES AUXILIARES NO MOTOR JAVASCRIPT ---
     private void configurarMotorScript() {
         ScriptEngineManager gerenciador = new ScriptEngineManager();
         motor = gerenciador.getEngineByName("JavaScript");
@@ -43,6 +45,7 @@ public class CalculadoraCientifica extends JFrame {
         }
     }
 
+    // --- MONTA A INTERFACE GRAFICA E REGISTRA ACOES DOS BOTOES ---
     private void inicializarComponentes() {
         setTitle("Calculadora Científica");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -83,30 +86,31 @@ public class CalculadoraCientifica extends JFrame {
 
         for (String[] linha : botoes) {
             for (String texto : linha) {
-                BotaoArredondado botao = new BotaoArredondado(texto);
-                botao.setFont(new Font("Segoe UI", Font.BOLD, 16));
+                BotaoArredondado btnArredondado = new BotaoArredondado(texto);
+                btnArredondado.setFont(new Font("Segoe UI", Font.BOLD, 16));
 
                 if (texto.matches("[0-9]") || texto.equals(".")) {
-                    botao.setCorFundo(COR_BOTAO_NORMAL);
+                    btnArredondado.setCorFundo(COR_BOTAO_NORMAL);
                 } else if (texto.matches("[+\\-*/^]|mod")) {
-                    botao.setCorFundo(COR_BOTAO_OPERADOR);
+                    btnArredondado.setCorFundo(COR_BOTAO_OPERADOR);
                 } else if (texto.equals("=")) {
-                    botao.setCorFundo(COR_BOTAO_IGUAL);
+                    btnArredondado.setCorFundo(COR_BOTAO_IGUAL);
                 } else if (texto.equals("C") || texto.equals("CE") || texto.equals("DEL")) {
-                    botao.setCorFundo(new Color(180, 60, 50));
+                    btnArredondado.setCorFundo(new Color(180, 60, 50));
                 } else {
-                    botao.setCorFundo(COR_BOTAO_FUNCAO);
+                    btnArredondado.setCorFundo(COR_BOTAO_FUNCAO);
                 }
 
-                botao.setCorDestaque(COR_BOTAO_DESTAQUE);
-                botao.addActionListener(e -> processarBotao(texto));
-                painelBotoes.add(botao);
+                btnArredondado.setCorDestaque(COR_BOTAO_DESTAQUE);
+                btnArredondado.addActionListener(e -> processarBotao(texto));
+                painelBotoes.add(btnArredondado);
             }
         }
 
         add(painelBotoes, BorderLayout.CENTER);
     }
 
+    // --- TRATA O COMANDO DE CADA BOTÃO PRESSIONADO ---
     private void processarBotao(String comando) {
         switch (comando) {
             case "C":
@@ -157,16 +161,19 @@ public class CalculadoraCientifica extends JFrame {
         }
     }
 
+    // --- INSERE TEXTO BRUTO NO VISOR ---
     private void inserirTexto(String texto) {
         visor.setText(visor.getText() + texto);
         visor.requestFocus();
     }
 
+    // --- INSERE CONSTANTES COMO PI, E E ANS ---
     private void inserirConstante(String constante) {
         visor.setText(visor.getText() + constante);
         visor.requestFocus();
     }
 
+    // --- INSERE O NOME DA FUNÇÃO E ABRE PARENTESE ---
     private void inserirFuncao(String funcao) {
         String textoAtual = visor.getText();
         visor.setText(textoAtual + funcao + "(");
@@ -176,6 +183,7 @@ public class CalculadoraCientifica extends JFrame {
         });
     }
 
+    // --- APLICA NEGAÇÃO AO CONTEÚDO ATUAL DO VISOR ---
     private void inverterSinal() {
         String texto = visor.getText();
         if (texto.isEmpty()) {
@@ -185,6 +193,7 @@ public class CalculadoraCientifica extends JFrame {
         }
     }
 
+    // --- PRE-PROCESSA E AVALIA A EXPRESSÃO DO VISOR ---
     private void calcular() {
         String expressao = visor.getText();
         if (expressao == null || expressao.trim().isEmpty()) {
@@ -211,6 +220,7 @@ public class CalculadoraCientifica extends JFrame {
         }
     }
 
+    // --- CONVERTE FUNCOES E OPERADORES PARA SINTAXE JAVASCRIPT ---
     private String preProcessarExpressao(String expressao) {
         expressao = expressao.replaceAll("\\bπ\\b", "Math.PI");
         expressao = expressao.replaceAll("\\bpi\\b", "Math.PI");
@@ -237,6 +247,7 @@ public class CalculadoraCientifica extends JFrame {
         return expressao;
     }
 
+    // --- FORMATA O RESULTADO NUMÉRICO PARA EXIBIÇÃO ---
     private String formatarResultado(double valor) {
         if (Double.isNaN(valor) || Double.isInfinite(valor)) {
             return "Erro";
@@ -248,6 +259,7 @@ public class CalculadoraCientifica extends JFrame {
         return String.format("%.12g", valor).replace(',', '.');
     }
 
+    // --- PONTO DE ENTRADA DA APLICAÇÃO SWING ---
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             try {

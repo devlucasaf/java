@@ -1,4 +1,4 @@
-package games.text.tradutorreverso;
+package games.text.tradutor;
 
 public class Palavra {
 

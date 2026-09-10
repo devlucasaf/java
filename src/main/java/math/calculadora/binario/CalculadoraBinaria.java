@@ -235,3 +235,4 @@ public class CalculadoraBinaria extends JFrame implements ActionListener {
         });
     }
 }
+

@@ -1,4 +1,4 @@
-package games.puzzle.quebracabecadeslizante;
+package games.puzzle.quebracabeca;
 
 import java.util.Random;
 import java.util.Scanner;

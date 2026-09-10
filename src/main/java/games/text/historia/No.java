@@ -1,4 +1,4 @@
-package games.text.continuarhistoria;
+package games.text.historia;
 
 import java.util.ArrayList;
 import java.util.Arrays;

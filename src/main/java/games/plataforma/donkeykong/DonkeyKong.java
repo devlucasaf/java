@@ -78,7 +78,13 @@ public class DonkeyKong {
             }
         }
 
-        int[] andaresY = {ALTURA - 1, ALTURA - 5, ALTURA - 9, 1};
+        int[] andaresY = {
+                ALTURA - 1,
+                ALTURA - 5,
+                ALTURA - 9,
+                1
+        };
+
         for (int y : andaresY) {
             for (int x = 0; x < LARGURA; x++) {
                 mapa[y][x] = ANDAR;
@@ -157,8 +163,8 @@ public class DonkeyKong {
     private void verificarColisao() {
         Iterator<Barril> it = barris.iterator();
         while (it.hasNext()) {
-            Barril b = it.next();
-            if (b.getX() == jogadorX && b.getY() == jogadorY) {
+            Barril barril = it.next();
+            if (barril.getX() == jogadorX && barril.getY() == jogadorY) {
                 vidas--;
                 jogadorX = 1;
                 jogadorY = ALTURA - 2;

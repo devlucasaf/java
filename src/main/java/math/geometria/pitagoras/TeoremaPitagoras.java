@@ -3,10 +3,12 @@ package math.geometria.pitagoras;
 import java.util.Scanner;
 
 public class TeoremaPitagoras {
+    // --- CALCULA A HIPOTENUSA A PARTIR DOS DOIS CATETOS ---
     public static double calcularHipotenusa(double catetoA, double catetoB) {
         return Math.sqrt(Math.pow(catetoA, 2) + Math.pow(catetoB, 2));
     }
 
+    // --- CALCULA O CATETO DESCONHECIDO A PARTIR DA HIPOTENUSA ---
     public static double calcularCateto(double hipotenusa, double catetoConhecido) {
         if (hipotenusa <= catetoConhecido) {
             throw new IllegalArgumentException("A hipotenusa deve ser maior que o cateto conhecido.");
@@ -14,6 +16,7 @@ public class TeoremaPitagoras {
         return Math.sqrt(Math.pow(hipotenusa, 2) - Math.pow(catetoConhecido, 2));
     }
 
+    // --- MENU INTERATIVO PARA CÁLCULOS DO TEOREMA DE PITÁGORAS ---
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int opcao;
@@ -42,7 +45,6 @@ public class TeoremaPitagoras {
                         System.out.printf("A hipotenusa é: %.2f%n", hipotenusa);
                     }
                     break;
-
                 case 2:
                     System.out.print("Digite o valor da hipotenusa: ");
                     double hipotenusa = scanner.nextDouble();
@@ -60,11 +62,9 @@ public class TeoremaPitagoras {
                         }
                     }
                     break;
-
                 case 3:
                     System.out.println("Encerrando o programa...");
                     break;
-
                 default:
                     System.out.println("Opção inválida! Digite 1, 2 ou 3.");
             }

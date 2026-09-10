@@ -7,32 +7,36 @@ public class ConversorBases {
         if (decimal == 0) {
             return "0";
         }
+
         StringBuilder resultado = new StringBuilder();
-        int num = Math.abs(decimal);
-        while (num > 0) {
-            resultado.insert(0, num % 2);
-            num /= 2;
+        int numero = Math.abs(decimal);
+        while (numero > 0) {
+            resultado.insert(0, numero % 2);
+            numero /= 2;
         }
         return (decimal < 0 ? "-" : "") + resultado;
     }
 
+    // --- CONVERTE DECIMAL PARA OCTAL POR DIVISÕES SUCESSIVAS POR 8 ---
     public static String decimalParaOctal(int decimal) {
         if (decimal == 0) {
             return "0";
         }
         StringBuilder resultado = new StringBuilder();
-        int num = Math.abs(decimal);
-        while (num > 0) {
-            resultado.insert(0, num % 8);
-            num /= 8;
+        int numero = Math.abs(decimal);
+        while (numero > 0) {
+            resultado.insert(0, numero % 8);
+            numero /= 8;
         }
         return (decimal < 0 ? "-" : "") + resultado;
     }
 
+    // --- CONVERTE DECIMAL PARA HEXADECIMAL POR DIVISÕES SUCESSIVAS POR 16 ---
     public static String decimalParaHexadecimal(int decimal) {
         if (decimal == 0) {
             return "0";
         }
+
         char[] hexDigitos = "0123456789ABCDEF".toCharArray();
         StringBuilder resultado = new StringBuilder();
         int num = Math.abs(decimal);
@@ -43,23 +47,28 @@ public class ConversorBases {
         return (decimal < 0 ? "-" : "") + resultado;
     }
 
+    // --- CONVERTE BINÁRIO PARA DECIMAL ---
     public static int binarioParaDecimal(String binario) {
         return Integer.parseInt(binario, 2);
     }
 
+    // --- CONVERTE OCTAL PARA DECIMAL ---
     public static int octalParaDecimal(String octal) {
         return Integer.parseInt(octal, 8);
     }
 
+    // --- CONVERTE HEXADECIMAL PARA DECIMAL ---
     public static int hexadecimalParaDecimal(String hexadecimal) {
         return Integer.parseInt(hexadecimal, 16);
     }
 
+    // --- CONVERTE DE QUALQUER BASE PARA OUTRA PASSANDO PELO DECIMAL ---
     public static String converter(String numero, int baseOrigem, int baseDestino) {
         int decimal = Integer.parseInt(numero, baseOrigem);
         return Integer.toString(decimal, baseDestino).toUpperCase();
     }
 
+    // --- MENU INTERATIVO DAS CONVERSÕES DE BASE ---
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcao;

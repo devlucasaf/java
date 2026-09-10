@@ -15,6 +15,7 @@ public class CalculadoraDerivadaPolinomial {
 
         List<Double> coeficientes = new ArrayList<>(grau + 1);
 
+        // --- LE OS COEFICIENTES DO MAIOR EXPOENTE PARA O TERMO INDEPENDENTE ---
         for (int i = grau; i >= 0; i--) {
             System.out.print("Digite o coeficiente para x^" + i + ": ");
             double coeficiente = scanner.nextDouble();
@@ -37,11 +38,12 @@ public class CalculadoraDerivadaPolinomial {
         scanner.close();
     }
 
+    // --- APLICA A REGRA DA POTÊNCIA ---
     public static List<Double> calcularDerivada(List<Double> coeficientes, int grau) {
         List<Double> derivada = new ArrayList<>();
         for (int i = 0; i <= grau; i++) {
             double coefOriginal = coeficientes.get(i);
-            int expoente = grau - i; // expoente real do termo
+            int expoente = grau - i;
             if (expoente > 0) {
                 double novoCoeficiente = expoente * coefOriginal;
                 derivada.add(novoCoeficiente);
@@ -50,6 +52,7 @@ public class CalculadoraDerivadaPolinomial {
         return derivada;
     }
 
+    // --- MONTA A STRING DO POLINÔMIO PARA EXIBIÇÃO ---
     public static String formatarPolinomio(List<Double> coeficientes, int grau) {
         StringBuilder polinomioStr = new StringBuilder();
         boolean primeiroTermo = true;
@@ -95,6 +98,7 @@ public class CalculadoraDerivadaPolinomial {
         return polinomioStr.toString();
     }
 
+    // --- REMOVE DECIMAIS DESNECESSÁRIOS EM NÚMEROS INTEIROS ---
     public static String formatarNumero(double valor) {
         if (valor == (long) valor) {
             return String.valueOf((long) valor);

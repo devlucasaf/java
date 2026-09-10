@@ -96,10 +96,10 @@ public class CapitaisDoMundo {
         int acertos = 0;
 
         for (int i = 0; i < qtd; i++) {
-            Pais p = rodada.get(i);
-            String enunciado = paisParaCapital ? p.getNome() : p.getCapital();
-            String esperado  = paisParaCapital ? p.getCapital() : p.getNome();
-            String rotulo    = paisParaCapital ? "Capital de" : "Pais cuja capital e";
+            Pais pais = rodada.get(i);
+            String enunciado = paisParaCapital ? pais.getNome() : pais.getCapital();
+            String esperado = paisParaCapital ? pais.getCapital() : pais.getNome();
+            String rotulo = paisParaCapital ? "Capital de" : "Pais cuja capital e";
 
             System.out.printf("%n[%d/%d] %s %s?%n", i + 1, qtd, rotulo, enunciado);
             System.out.print("Resposta: ");

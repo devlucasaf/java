@@ -3,9 +3,9 @@ package games.narrativo.rpg;
 import java.util.Scanner;
 
 public class Main {
-    private static Personagem jogador;
-    private static final Scanner scanner = new Scanner(System.in);
-    private static int inimigosDerotados = 0;
+    private static Personagem       jogador;
+    private static final Scanner    scanner = new Scanner(System.in);
+    private static int              inimigosDerotados = 0;
 
     public static void main(String[] args) {
         criarPersonagem();
@@ -131,6 +131,7 @@ public class Main {
             if (idx == 0) {
                 return;
             }
+
             ItemRPG item = jogador.getInventario().usarItem(idx - 1);
             if (item != null && item.getTipo().equals("cura")) {
                 jogador.curar(item.getValor());

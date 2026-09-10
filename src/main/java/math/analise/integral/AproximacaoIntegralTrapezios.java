@@ -13,6 +13,7 @@ public class AproximacaoIntegralTrapezios {
         motorJs = gerenciador.getEngineByName("JavaScript");
     }
 
+    // --- CALCULA F(X) AVALIANDO A EXPRESSÃO NO MOTOR JS ---
     public static double avaliarFuncao(String expressao, double x) throws ScriptException {
         motorJs.put("x", x);
         Object resultado = motorJs.eval(expressao);
@@ -23,6 +24,7 @@ public class AproximacaoIntegralTrapezios {
         }
     }
 
+    // --- LE A FUNÇÃO, OS LIMITES E APROXIMA A INTEGRAL POR TRAPÉZIOS ---
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -33,7 +35,7 @@ public class AproximacaoIntegralTrapezios {
         System.out.print("Função: ");
         String funcao = scanner.nextLine();
 
-        funcao = funcao.replace('^', '*').replace("**", "**"); // garante que '^' vire '**'
+        funcao = funcao.replace('^', '*').replace("**", "**");
 
         System.out.print("\nLimite inferior (a): ");
         double a = scanner.nextDouble();

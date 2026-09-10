@@ -19,18 +19,19 @@ public class CalculadoraLogaritmo {
         return Math.log(numero) / Math.log(base);
     }
 
+    // --- LE NÚMERO E BASE, CALCULA O LOGARITMO E EXIBE O RESULTADO ---
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
+        Scanner scannner = new Scanner(System.in);
         DecimalFormat formatador = new DecimalFormat("#0.0000");
 
         System.out.println("=== CALCULADORA DE LOGARITMOS ===");
 
         try {
             System.out.print("Digite o número (positivo): ");
-            double numero = entrada.nextDouble();
+            double numero = scannner.nextDouble();
 
             System.out.print("Digite a base (positiva e diferente de 1): ");
-            double base = entrada.nextDouble();
+            double base = scannner.nextDouble();
 
             double resultado = calcularLogaritmo(numero, base);
 
@@ -41,7 +42,8 @@ public class CalculadoraLogaritmo {
         } catch (Exception erro) {
             System.err.println("Erro: Entrada inválida. Certifique-se de digitar números válidos.");
         } finally {
-            entrada.close();
+            scannner.close();
         }
     }
 }
+

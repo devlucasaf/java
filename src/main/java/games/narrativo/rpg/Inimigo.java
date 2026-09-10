@@ -47,8 +47,8 @@ public class Inimigo {
 
     // Fábrica de inimigos por nível
     public static Inimigo gerarInimigo(int nivelJogador) {
-        Random r = new Random();
-        int tipo = r.nextInt(5);
+        Random random = new Random();
+        int tipo = random.nextInt(5);
         int mult = nivelJogador;
 
         return switch (tipo) {

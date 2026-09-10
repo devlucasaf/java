@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class EquacaoQuadratica {
 
+    // --- LE OS COEFICIENTES E RESOLVE A EQUAÇÃO QUADRÁTICA ---
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -30,28 +31,35 @@ public class EquacaoQuadratica {
         scanner.close();
     }
 
+    // --- CALCULA O DISCRIMINANTE B^2 - 4AC ---
     public static double calcularDelta(double a, double b, double c) {
         return b * b - 4 * a * c;
     }
 
+    // --- CALCULA AS RAÍZES REAIS OU COMPLEXAS PELA FÓRMULA DE BHASKARA ---
     public static double[] calcularRaizes(double a, double b, double c, double delta) {
         double[] raizes = new double[4];
 
         if (delta >= 0) {
             double raiz1 = (-b + Math.sqrt(delta)) / (2 * a);
             double raiz2 = (-b - Math.sqrt(delta)) / (2 * a);
-            raizes[0] = raiz1; raizes[1] = 0.0;
-            raizes[2] = raiz2; raizes[3] = 0.0;
+            raizes[0] = raiz1;
+            raizes[1] = 0.0;
+            raizes[2] = raiz2;
+            raizes[3] = 0.0;
         } else {
             double parteReal = -b / (2 * a);
             double parteImaginaria = Math.sqrt(-delta) / (2 * a);
-            raizes[0] = parteReal; raizes[1] = parteImaginaria;
-            raizes[2] = parteReal; raizes[3] = -parteImaginaria;
+            raizes[0] = parteReal;
+            raizes[1] = parteImaginaria;
+            raizes[2] = parteReal;
+            raizes[3] = -parteImaginaria;
         }
 
         return raizes;
     }
 
+    // --- MOSTRA AS RAÍZES DE ACORDO COM O SINAL DO DELTA ---
     public static void exibirResultado(double delta, double[] raizes) {
         if (delta > 0) {
             System.out.println("A equação possui duas raízes reais e distintas:");

@@ -7,6 +7,7 @@ import java.util.List;
 public class EquacaoCubica {
     private static final double EPSILON = 1e-10;
 
+    // --- LE OS COEFICIENTES E RESOLVE A EQUAÇÃO CÚBICA ---
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -35,6 +36,7 @@ public class EquacaoCubica {
         exibirRaizes(raizesReais);
     }
 
+    // --- RESOLVE EQUAÇÃO LINEAR OU QUADRÁTICA QUANDO A É ZERO ---
     private static void resolverGrauInferior(double a, Scanner scanner) {
         System.out.print("Digite o coeficiente b: ");
         double b = scanner.nextDouble();
@@ -58,10 +60,11 @@ public class EquacaoCubica {
         }
     }
 
+    // --- RESOLVE B*X^2 + C*X + D = 0 PELAS FÓRMULAS DE BHASKARA ---
     private static double[] resolverQuadratica(double b, double c, double d) {
         double delta = c * c - 4 * b * d;
         if (delta < -EPSILON) {
-            return new double[0]; // sem raízes reais
+            return new double[0]; // --- SEM RAIZES REAIS ---
         }
 
         if (Math.abs(delta) < EPSILON) {
@@ -75,6 +78,7 @@ public class EquacaoCubica {
         return new double[]{raiz1, raiz2};
     }
 
+    // --- CALCULA AS RAÍZES REAIS PELO MÉTODO DE CARDANO ---
     public static double[] calcularRaizesReais(double a, double b, double c, double d) {
         double a2 = b / a;
         double a1 = c / a;
@@ -125,6 +129,7 @@ public class EquacaoCubica {
         return resultado;
     }
 
+    // --- MOSTRA AS RAÍZES REAIS ENCONTRADAS ---
     private static void exibirRaizes(double[] raizes) {
         if (raizes.length == 0) {
             System.out.println("A equação não possui raízes reais.");

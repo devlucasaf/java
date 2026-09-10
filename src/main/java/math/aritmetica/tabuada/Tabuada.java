@@ -5,34 +5,34 @@ import java.util.Scanner;
 public class Tabuada {
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Digite um número: ");
-        int number = input.nextInt();
+        int numero = scanner.nextInt();
 
         for (int o = 1; o <= 10; o++) {
-            int sum = number + o;
-            System.out.printf("%s + %s = %s \n", number, o, sum);
+            int soma = numero + o;
+            System.out.printf("%s + %s = %s \n", numero, o, soma);
         }
 
         System.out.print("\n+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
 
         for (int a=1; a<=10; a++) {
-            int sub = number + a;
-            System.out.printf("\n%s - %s = %s\n", sub, number, a);
+            int subtracao = numero + a;
+            System.out.printf("\n%s - %s = %s\n", subtracao, numero, a);
         }
 
         System.out.print("+=+=" + 25);
 
         for (int i = 1; i <= 10; i++) {
-            int mult = number * i;
-            System.out.printf("\n%s * %s = %s\n", number, i, mult);
+            int multiplicacao = numero * i;
+            System.out.printf("\n%s * %s = %s\n", numero, i, multiplicacao);
         }
 
         System.out.print("\n+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");
 
         for (int u = 1; u <= 10; u++) {
-            int div = number * u;
-            System.out.printf("\n%s / %s = %s\n", div, number, u);
+            int divisao = numero * u;
+            System.out.printf("\n%s / %s = %s\n", divisao, numero, u);
         }
 
         System.out.print("\n+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=\n");

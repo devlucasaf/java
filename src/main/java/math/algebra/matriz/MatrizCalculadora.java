@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class MatrizCalculadora {
 
+    // --- SOMA ELEMENTO A ELEMENTO DAS MATRIZES A E B ---
     public static double[][] soma(double[][] a, double[][] b) {
         int linhas = a.length;
         int colunas = a[0].length;
@@ -16,6 +17,7 @@ public class MatrizCalculadora {
         return resultado;
     }
 
+    // --- SUBTRAI ELEMENTO A ELEMENTO A MATRIZ B DA MATRIZ A ---
     public static double[][] subtracao(double[][] a, double[][] b) {
         int linhas = a.length;
         int colunas = a[0].length;
@@ -28,6 +30,7 @@ public class MatrizCalculadora {
         return resultado;
     }
 
+    // --- MULTIPLICA AS MATRIZES A E B ---
     public static double[][] multiplicacao(double[][] a, double[][] b) {
         int linhasA = a.length;
         int colunasA = a[0].length;
@@ -43,6 +46,7 @@ public class MatrizCalculadora {
         return resultado;
     }
 
+    // --- TROCA LINHAS POR COLUNAS DA MATRIZ ---
     public static double[][] transposta(double[][] matriz) {
         int linhas = matriz.length;
         int colunas = matriz[0].length;
@@ -55,6 +59,7 @@ public class MatrizCalculadora {
         return resultado;
     }
 
+    // --- CALCULA O DETERMINANTE DE MATRIZES ATE 3X3 ---
     public static double determinante(double[][] matriz) {
         int n = matriz.length;
         if (n == 1) {
@@ -73,6 +78,7 @@ public class MatrizCalculadora {
         throw new IllegalArgumentException("Determinante suportado apenas para matrizes até 3x3");
     }
 
+    // --- MULTIPLICA TODOS OS ELEMENTOS DA MATRIZ POR UM ESCALAR ---
     public static double[][] multiplicacaoEscalar(double[][] matriz, double escalar) {
         int linhas = matriz.length;
         int colunas = matriz[0].length;
@@ -85,6 +91,7 @@ public class MatrizCalculadora {
         return resultado;
     }
 
+    // --- IMPRIME A MATRIZ FORMATADA NO CONSOLE ---
     public static void imprimir(double[][] matriz) {
         for (double[] linha : matriz) {
             System.out.print("| ");
@@ -96,17 +103,19 @@ public class MatrizCalculadora {
         System.out.println();
     }
 
-    public static double[][] lerMatriz(Scanner sc, int linhas, int colunas) {
+    // --- LE OS ELEMENTOS DE UMA MATRIZ A PARTIR DO TECLADO ---
+    public static double[][] lerMatriz(Scanner scanner, int linhas, int colunas) {
         double[][] matriz = new double[linhas][colunas];
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
                 System.out.printf("  [%d][%d]: ", i, j);
-                matriz[i][j] = sc.nextDouble();
+                matriz[i][j] = scanner.nextDouble();
             }
         }
         return matriz;
     }
 
+    // --- MENU INTERATIVO DAS OPERACOES COM MATRIZES ---
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int opcao;
@@ -126,30 +135,31 @@ public class MatrizCalculadora {
             switch (opcao) {
                 case 1, 2, 3 -> {
                     System.out.print("Linhas da matriz A: ");
-                    int linhasA = scanner.nextInt();
+                    int linhasMatrizA = scanner.nextInt();
                     System.out.print("Colunas da matriz A: ");
-                    int colunasA = scanner.nextInt();
+                    int colunasMatrizA = scanner.nextInt();
 
                     System.out.println("Matriz A:");
-                    double[][] a = lerMatriz(scanner, linhasA, colunasA);
+                    double[][] matrizA = lerMatriz(scanner, linhasMatrizA, colunasMatrizA);
 
-                    int linhasB, colunasB;
+                    int linhasMatrizB;
+                    int colunasMatrizB;
                     if (opcao == 3) {
-                        linhasB = colunasA;
+                        linhasMatrizB = colunasMatrizA;
                         System.out.print("Colunas da matriz B: ");
-                        colunasB = scanner.nextInt();
+                        colunasMatrizB = scanner.nextInt();
                     } else {
-                        linhasB = linhasA;
-                        colunasB = colunasA;
+                        linhasMatrizB = linhasMatrizA;
+                        colunasMatrizB = colunasMatrizA;
                     }
 
                     System.out.println("Matriz B:");
-                    double[][] b = lerMatriz(scanner, linhasB, colunasB);
+                    double[][] matrizB = lerMatriz(scanner, linhasMatrizB, colunasMatrizB);
 
                     double[][] resultado = switch (opcao) {
-                        case 1 -> soma(a, b);
-                        case 2 -> subtracao(a, b);
-                        case 3 -> multiplicacao(a, b);
+                        case 1 -> soma(matrizA, matrizB);
+                        case 2 -> subtracao(matrizA, matrizB);
+                        case 3 -> multiplicacao(matrizA, matrizB);
                         default -> null;
                     };
 
@@ -158,13 +168,13 @@ public class MatrizCalculadora {
                 }
                 case 4 -> {
                     System.out.print("Linhas: ");
-                    int l = scanner.nextInt();
+                    int linha = scanner.nextInt();
                     System.out.print("Colunas: ");
-                    int c = scanner.nextInt();
+                    int coluna = scanner.nextInt();
                     System.out.println("Matriz:");
-                    double[][] m = lerMatriz(scanner, l, c);
+                    double[][] matriz = lerMatriz(scanner, linha, coluna);
                     System.out.println("Transposta:");
-                    imprimir(transposta(m));
+                    imprimir(transposta(matriz));
                 }
                 case 5 -> {
                     System.out.print("Tamanho (2 ou 3): ");
@@ -175,15 +185,15 @@ public class MatrizCalculadora {
                 }
                 case 6 -> {
                     System.out.print("Linhas: ");
-                    int l = scanner.nextInt();
+                    int linha = scanner.nextInt();
                     System.out.print("Colunas: ");
-                    int c = scanner.nextInt();
+                    int coluna = scanner.nextInt();
                     System.out.println("Matriz:");
-                    double[][] m = lerMatriz(scanner, l, c);
+                    double[][] matriz = lerMatriz(scanner, linha, coluna);
                     System.out.print("Escalar: ");
                     double escalar = scanner.nextDouble();
                     System.out.println("Resultado:");
-                    imprimir(multiplicacaoEscalar(m, escalar));
+                    imprimir(multiplicacaoEscalar(matriz, escalar));
                 }
                 case 0 -> System.out.println("Encerrando...");
                 default -> System.out.println("Opção inválida!");

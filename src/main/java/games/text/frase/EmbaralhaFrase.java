@@ -1,4 +1,4 @@
-package games.text.embaralhafrase;
+package games.text.frase;
 
 import java.util.ArrayList;
 import java.util.Arrays;

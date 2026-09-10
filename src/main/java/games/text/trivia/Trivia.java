@@ -91,19 +91,19 @@ public class Trivia {
         int acertos = 0;
 
         for (int i = 0; i < qtd; i++) {
-            Pergunta p = rodada.get(i);
-            System.out.printf("%n[%d/%d] (%s) %s%n", i + 1, qtd, p.getCategoria(), p.getEnunciado());
-            for (int j = 0; j < p.getAlternativas().size(); j++) {
-                System.out.printf("  %d - %s%n", j + 1, p.getAlternativas().get(j));
+            Pergunta pergunta = rodada.get(i);
+            System.out.printf("%n[%d/%d] (%s) %s%n", i + 1, qtd, pergunta.getCategoria(), pergunta.getEnunciado());
+            for (int j = 0; j < pergunta.getAlternativas().size(); j++) {
+                System.out.printf("  %d - %s%n", j + 1, pergunta.getAlternativas().get(j));
             }
             System.out.print("Resposta: ");
             try {
-                int resp = Integer.parseInt(entrada.nextLine().trim()) - 1;
-                if (resp == p.getIndiceCorreto()) {
+                int resposta = Integer.parseInt(entrada.nextLine().trim()) - 1;
+                if (resposta == pergunta.getIndiceCorreto()) {
                     System.out.println("Correto!");
                     acertos++;
                 } else {
-                    System.out.println("Errado. Resposta correta: " + p.getRespostaCorreta());
+                    System.out.println("Errado. Resposta correta: " + pergunta.getRespostaCorreta());
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Resposta invalida. Considerada errada.");

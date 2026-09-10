@@ -3,12 +3,12 @@ package math.filas.mm1k;
 import java.util.*;
 
 public class SimuladorFilaMM1K {
+    private final double    lambda;
+    private final double    mu;
+    private final int       K;
+    private final Random    random = new Random();
 
-    private final double lambda;
-    private final double mu;
-    private final int K;
-    private final Random random = new Random();
-
+    // --- DEFINE LAMBDA, MU E A CAPACIDADE K ---
     public SimuladorFilaMM1K(double lambda, double mu, int K) {
         if (lambda <= 0 || mu <= 0 || K < 1) {
             throw new IllegalArgumentException("Lambda e mu devem ser positivos, e K >= 1.");
@@ -18,10 +18,12 @@ public class SimuladorFilaMM1K {
         this.K = K;
     }
 
+    // --- RETORNA RHO = LAMBDA / MU ---
     public double getFatorUtilizacao() {
         return lambda / mu;
     }
 
+    // --- PROBABILIDADE DE BLOQUEIO PK ---
     public double getProbabilidadeSistemaCheio() {
         double rho = getFatorUtilizacao();
         if (Math.abs(rho - 1.0) < 1e-9) {
@@ -31,10 +33,12 @@ public class SimuladorFilaMM1K {
         return P0 * Math.pow(rho, K);
     }
 
+    // --- TAXA EFETIVA DE ENTRADA ---
     public double getLambdaEfetivo() {
         return lambda * (1 - getProbabilidadeSistemaCheio());
     }
 
+    // --- NÚMERO MÉDIO NO SISTEMA TEÓRICO ---
     public double getNumeroMedioNoSistemaTeorico() {
         double rho = getFatorUtilizacao();
         if (Math.abs(rho - 1.0) < 1e-9) {
@@ -49,12 +53,14 @@ public class SimuladorFilaMM1K {
         return L;
     }
 
+    // --- NÚMERO MÉDIO NA FILA TEÓRICO ---
     public double getNumeroMedioNaFilaTeorico() {
         double L = getNumeroMedioNoSistemaTeorico();
         double rho_eff = getLambdaEfetivo() / mu;
         return L - rho_eff;
     }
 
+    // --- TEMPO MÉDIO NO SISTEMA PELA LEI DE LITTLE COM LAMBDA EFETIVO ---
     public double getTempoMedioNoSistemaTeorico() {
         double lambdaEff = getLambdaEfetivo();
         if (lambdaEff == 0) {
@@ -63,6 +69,7 @@ public class SimuladorFilaMM1K {
         return getNumeroMedioNoSistemaTeorico() / lambdaEff;
     }
 
+    // --- TEMPO MÉDIO DE ESPERA NA FILA PELA LEI DE LITTLE ---
     public double getTempoMedioEsperaNaFilaTeorico() {
         double lambdaEff = getLambdaEfetivo();
         if (lambdaEff == 0) {
@@ -71,10 +78,12 @@ public class SimuladorFilaMM1K {
         return getNumeroMedioNaFilaTeorico() / lambdaEff;
     }
 
+    // --- GERA INTERVALO EXPONENCIAL COM A TAXA INFORMADA ---
     private double gerarExponencial(double taxa) {
         return -Math.log(1 - random.nextDouble()) / taxa;
     }
 
+    // --- SIMULA CHEGADAS COM REJEIÇÃO QUANDO O SISTEMA ESTA CHEIO ---
     public ResultadoSimulacaoMM1K simular(int totalTentativas) {
         if (totalTentativas <= 0) {
             ResultadoSimulacaoMM1K vazio = new ResultadoSimulacaoMM1K();
@@ -160,23 +169,26 @@ public class SimuladorFilaMM1K {
 
         double tempoTotal = ultimoTempo;
 
-        ResultadoSimulacaoMM1K res = new ResultadoSimulacaoMM1K();
-        res.clientesAtendidos = aceitos;
-        res.clientesRejeitados = rejeitados;
-        res.tempoMedioEspera = (aceitos > 0) ? somaEsperas / aceitos : 0;
-        res.tempoMedioNoSistema = (aceitos > 0) ? somaTemposSistema / aceitos : 0;
-        res.tamanhoMedioFila = (tempoTotal > 0) ? areaFila / tempoTotal : 0;
-        return res;
+        ResultadoSimulacaoMM1K resultado = new ResultadoSimulacaoMM1K();
+        resultado.clientesAtendidos = aceitos;
+        resultado.clientesRejeitados = rejeitados;
+        resultado.tempoMedioEspera = (aceitos > 0) ? somaEsperas / aceitos : 0;
+        resultado.tempoMedioNoSistema = (aceitos > 0) ? somaTemposSistema / aceitos : 0;
+        resultado.tamanhoMedioFila = (tempoTotal > 0) ? areaFila / tempoTotal : 0;
+        return resultado;
     }
 
+    // --- RETORNA A TAXA DE CHEGADA ---
     public double getLambda() {
         return lambda;
     }
 
+    // --- RETORNA A TAXA DE ATENDIMENTO ---
     public double getMu() {
         return mu;
     }
 
+    // --- RETORNA A CAPACIDADE MÁXIMA DO SISTEMA ---
     public int getK() {
         return K;
     }

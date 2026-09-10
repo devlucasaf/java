@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class CacaNiquel {
 
     private final Random sorteador = new Random();
-    private final Scanner entrada  = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     private double saldo;
     private double jackpot = 1000.0;
@@ -91,11 +91,11 @@ public class CacaNiquel {
         try {
             System.out.println();
             for (int passos = 0; passos < 8; passos++) {
-                Simbolo s1 = sortearSimbolo();
-                Simbolo s2 = sortearSimbolo();
-                Simbolo s3 = sortearSimbolo();
-                System.out.print("\r  |  " + s1.getEmoji() + "  |  " + s2.getEmoji()
-                        + "  |  " + s3.getEmoji() + "  |  ");
+                Simbolo simbolo1 = sortearSimbolo();
+                Simbolo simbolo2 = sortearSimbolo();
+                Simbolo simbolo3 = sortearSimbolo();
+                System.out.print("\r  |  " + simbolo1.getEmoji() + "  |  " + simbolo2.getEmoji()
+                        + "  |  " + simbolo3.getEmoji() + "  |  ");
                 Thread.sleep(120);
             }
             System.out.print("\r  |  " + resultado[0].getEmoji() + "  |  " + resultado[1].getEmoji()
@@ -138,7 +138,7 @@ public class CacaNiquel {
 
     private double lerDouble() {
         while (true) {
-            String linha = entrada.nextLine().trim().replace(',', '.');
+            String linha = scanner.nextLine().trim().replace(',', '.');
             try {
                 return Double.parseDouble(linha);
             } catch (NumberFormatException e) {

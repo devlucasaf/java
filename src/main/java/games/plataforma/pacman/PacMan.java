@@ -78,7 +78,13 @@ public class PacMan {
             }
         }
 
-        int[] andares = {ALTURA - 1, ALTURA - 5, ALTURA - 9, 1};
+        int[] andares = {
+                ALTURA - 1,
+                ALTURA - 5,
+                ALTURA - 9,
+                1
+        };
+
         for (int y : andares) {
             for (int x = 0; x < LARGURA; x++) {
                 mapa[y][x] = PAREDE;
